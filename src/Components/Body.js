@@ -3,10 +3,11 @@
 import RestaurantCard from "./RestaurantCard";
 import SearchBar from "./SearchBar";
 import Footer from "./Footer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import ShimmerUI from "./ShimmerUI";
 
 const Body = () => {
+
   const [restaurants, setRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
 
@@ -50,16 +51,28 @@ const Body = () => {
       console.error("Error fetching data:", err);
     }
   };
+  
 
-  const filterTopRated = () => {
+const handleFilter = (filterParam) => {
+  if (filterParam === "topRated") {
     const filtered = allRestaurants.filter((r) => parseFloat(r.rating) > 4.2);
     setRestaurants(filtered);
-  };
+  } else {
+    const filtered = allRestaurants.filter((r) =>
+      r.name.toLowerCase().includes(filterParam.toLowerCase())
+    );
+    setRestaurants(filtered);
+  }
+};
+
+
+
+
 
   return (
     <div className="body">
       <div className="search">
-        <SearchBar onFilter={filterTopRated} />
+        <SearchBar onFilter={handleFilter} />
       </div>
       {/* conditional rendering - if you have a condition and you render according to the condition   */}
       <div className="res-container">
