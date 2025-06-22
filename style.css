@@ -96,6 +96,32 @@
   font-size: 20px;
 }
 
+.login-btn {
+  width: 100px;
+  justify-items: center;
+  background-color: white;
+  color: #ff2b85;
+  border: 2px solid #ff2b85;
+  margin-top: -9px;
+  padding: 10px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.login-btn:hover {
+  background-color: #ffe8f0;
+  transform: translateY(-1px);
+}
+
+.login-btn:active {
+  transform: scale(0.97);
+}
+
+
 .Search-container {
   display: flex;
   justify-content: center;
