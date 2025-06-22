@@ -15,26 +15,23 @@
     font-size: 16px;
   }
 
-
-
-  /* search bar  */
-    .search-container {
+  .Search-container {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .search-input,
-  .search-button {
+  .search-input, .search-button {
     width: 100%;
-    border-radius: 8px;
+    border-radius: 12px;
   }
-
-  .search-button {
-    margin-top: 10px;
-  }
-
+  
   .res-container {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: row;
+     width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
   }
 
   .card {
@@ -52,88 +49,32 @@
   }
 }
 
-/* search bar  */
-/* Search Bar Container */
-.search-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 40px auto;
-  max-width: 700px;
-  padding: 0 20px;
-  gap: 10px;
-}
-
-/* Input Field */
-.search-input {
-  flex: 1;
-  padding: 12px 16px;
-  font-size: 16px;
-  border: 2px solid #ff2b85;
-  border-radius: 8px;
-  outline: none;
-}
-
-/* Search Button */
-.search-button {
-  padding: 12px 20px;
-  font-size: 16px;
-  border: none;
-  background-color: #ff2b85;
-  color: white;
-  border-radius: 8px ;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.search-button:hover {
-  background-color: #e0216b;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Reset basic styling */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* App wrapper */
 .app {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #fff;
 }
 
-/* Header styling */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 16px 40px;
-  background-color: #ff2b85; /* Foodpanda pink */
+  background-color: #ff2b85;
   color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo container */
 .logo-container .logo {
   height: 50px;
   width: auto;
 }
 
-/* Navigation items */
 .nav-items ul {
   display: flex;
   list-style: none;
@@ -151,14 +92,56 @@
   color: #ffe8f0;
 }
 
-/* Cart icon specific styling */
 .fa-cart-shopping {
   font-size: 20px;
 }
 
+.Search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+  max-width: 700px;
+  padding: 0 20px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
+.search-input {
+  flex: 1;
+  padding: 12px 18px;
+  font-size: 16px;
+  border: 2px solid #ff2b85;
+  border-radius: 50px;
+  outline: none;
+  background-color: #fff;
+  transition: border-color 0.3s, box-shadow 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
 
-/* card  */
+.search-input:focus {
+  border-color: #e0216b;
+  box-shadow: 0 0 0 4px rgba(255, 43, 133, 0.1);
+}
+
+.search-button {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  background-color: #ff2b85;
+  color: white;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.search-button:hover {
+  background-color: #e0216b;
+  transform: translateY(-1px);
+}
+
 .res-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -207,8 +190,6 @@
   color: #ff2b85;
 }
 
-
-/* Responsive tweaks */
 @media (max-width: 600px) {
   .res-container {
     grid-template-columns: 1fr;
@@ -218,13 +199,8 @@
     margin: 0 auto;
     width: 90%;
   }
-
-  
-
 }
 
-
-/* footer  */
 .footer {
   background-color: #ff2b85;
   color: white;
@@ -259,6 +235,73 @@
 
 .footer-links a:hover {
   color: #ffe8f0;
+}
+
+/* shimmer ui  */
+
+.shimmer-container {
+   width: 300px !important; 
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+.shimmer-card {
+  background: #f6f7f8;
+  padding: 16px;
+  border-radius: 16px;
+  /* width: 300px; */
+  width: 350px;
+  height: 330px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.shimmer-wrapper {
+  position: relative;
+}
+
+.shimmer-img,
+.shimmer-line {
+  background: #eee;
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+
+.shimmer-img {
+  border-radius: 10px;
+  height: 200px;
+  width: 100%;
+}
+
+.shimmer-line {
+  margin-bottom: 14px;
+  height: 16px;
+  width: 80%;
+}
+
+.shimmer-line.short {
+  width: 40%;
+}
+
+.shimmer-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  height: 100%;
+  width: 150%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    left: 100%;
+  }
 }
 
 

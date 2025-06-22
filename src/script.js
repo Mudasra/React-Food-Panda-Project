@@ -5,14 +5,6 @@ import Body from "./Components/Body";
 
 
 
-
-
-
-// footer 
-
-
-
-
 const AppLayout = () => {
   return (
     <div className="app">
