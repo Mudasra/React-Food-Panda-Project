@@ -18,7 +18,7 @@ const Body = () => {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        "https://raw.githubusercontent.com/namastedev/namaste-react/refs/heads/main/swiggy-api"
+        "https://corsproxy.io/?url=https://raw.githubusercontent.com/namastedev/namaste-react/refs/heads/main/swiggy-api"
       );
       const json = await response.json();
       console.log("Full JSON:", json);

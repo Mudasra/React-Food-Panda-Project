@@ -1,5 +1,5 @@
 const ShimmerUI = () => {
-  const shimmerCount = 10;
+  const shimmerCount = 8;
 
   return (
     <>

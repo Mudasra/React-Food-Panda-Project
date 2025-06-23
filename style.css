@@ -98,7 +98,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 
 .app {
@@ -320,7 +319,7 @@
 /* shimmer ui  */
 
 .shimmer-container {
-   width: 300px !important; 
+   width: 300px !important;
   flex-shrink: 0;
   display: flex;
   flex-wrap: wrap;
@@ -331,6 +330,7 @@
 }
 
 .shimmer-card {
+  overflow-x: hidden;
   background: #f6f7f8;
   padding: 16px;
   border-radius: 16px;
