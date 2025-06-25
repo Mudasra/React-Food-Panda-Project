@@ -3,8 +3,9 @@
 import RestaurantCard from "./RestaurantCard";
 import SearchBar from "./SearchBar";
 import Footer from "./Footer";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import ShimmerUI from "./ShimmerUI";
+
 
 const Body = () => {
 
