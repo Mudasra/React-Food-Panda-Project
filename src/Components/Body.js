@@ -2,7 +2,6 @@
 
 import RestaurantCard from "./RestaurantCard";
 import SearchBar from "./SearchBar";
-import Footer from "./Footer";
 import { useState, useEffect } from "react";
 import ShimmerUI from "./ShimmerUI";
 
@@ -84,6 +83,7 @@ const handleFilter = (filterParam) => {
           restaurants.map((r) => (
             <RestaurantCard
               key={r.id}
+              id={r.id}
               name={r.name}
               image={r.image}
               rating={r.rating}
@@ -93,7 +93,6 @@ const handleFilter = (filterParam) => {
         )}
       </div>
 
-      <Footer />
     </div>
   );
 };

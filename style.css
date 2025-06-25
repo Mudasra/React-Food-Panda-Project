@@ -330,7 +330,8 @@
 /* shimmer ui  */
 
 .shimmer-container {
-   width: 300px !important;
+   /* width: 300px !important; */
+   width: 100%;
   flex-shrink: 0;
   display: flex;
   flex-wrap: wrap;
@@ -392,6 +393,62 @@
   100% {
     left: 100%;
   }
+}
+
+.recipe-container {
+  padding: 20px;
+  text-align: center;
+}
+
+.recipe-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.recipe-card {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  padding: 16px;
+  transition: transform 0.2s ease;
+}
+
+.recipe-card:hover {
+  transform: scale(1.03);
+}
+.recipe-container h2 {
+  font-size: 32px;
+  color: #ff2b85; 
+  margin-bottom: 24px;
+  text-align: center;
+  font-weight: 600;
+  position: relative;
+}
+
+.recipe-container h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #ff2b85;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+
+.recipe-card img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 12px;
+}
+
+.recipe-card h3 {
+  font-size: 18px;
+  color: #333;
 }
 
 
