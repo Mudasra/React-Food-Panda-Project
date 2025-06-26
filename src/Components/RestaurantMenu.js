@@ -1,46 +1,57 @@
 import { useEffect, useState } from "react";
-import ShimmerUI from "./ShimmerUI";
+import { useParams } from "react-router-dom";
+// import ShimmerUI from "./ShimmerUI";
 
-const RecipeList = () => {
-  const [recipes, setRecipes] = useState([]);
+const API_KEY = "e79e25cf11f848caae8bad2978bfce6e";
+
+const RestaurantMenu = () => {
+  const { resID } = useParams();
+  const [recipe, setRecipe] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchRecipes = async () => {
+    const fetchRecipe = async () => {
       try {
         const res = await fetch(
-          "https://api.spoonacular.com/recipes/complexSearch?query=pasta&number=6&apiKey=e79e25cf11f848caae8bad2978bfce6e"
+          `https://api.spoonacular.com/recipes/${resID}/information?apiKey=${API_KEY}`
         );
         const data = await res.json();
-        setRecipes(data.results);
+        setRecipe(data);
       } catch (err) {
-        console.error("Error fetching recipes:", err);
+        console.error("Error fetching recipe:", err);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchRecipes();
-  }, []);
+    fetchRecipe();
+  }, [resID]);
 
   return (
     <div className="recipe-container">
-      <h2>The food you were craving for</h2>
+      <h2>The food you were craving for 😋</h2>
 
       {loading ? (
-        <ShimmerUI />
-      ) : (
+        // <ShimmerUI />
+        <p>Loading....</p>
+      ) : recipe ? (
         <div className="recipe-list">
-          {recipes.map((recipe) => (
-            <div key={recipe.id} className="recipe-card">
-              <img src={recipe.image} alt={recipe.title} />
-              <h3>{recipe.title}</h3>
-            </div>
-          ))}
+          <div className="recipe-card">
+            <img src={recipe.image} alt={recipe.title} />
+            <h3>{recipe.title}</h3>
+            <p dangerouslySetInnerHTML={{ __html: recipe.summary }}></p>
+            <p><strong>Ready in:</strong> {recipe.readyInMinutes} minutes</p>
+            <p><strong>Servings:</strong> {recipe.servings}</p>
+            <a href={recipe.sourceUrl} target="_blank" rel="noreferrer">
+              View Full Recipe
+            </a>
+          </div>
         </div>
+      ) : (
+        <p>No recipe found.</p>
       )}
     </div>
   );
 };
 
-export default RecipeList;
+export default RestaurantMenu;
