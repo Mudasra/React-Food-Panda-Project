@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import ShimmerUI from "./ShimmerUI";
+
 
 const API_KEY = "e79e25cf11f848caae8bad2978bfce6e";
 
 const RestaurantMenu = () => {
+
   const { resID } = useParams(); //which recipe 
-  const [recipe, setRecipe] = useState(null); //storing data - recipe - to stpre the recipe details (title , image etc)
+  const [recipe, setRecipe] = useState(null); //storing data - recipe - to store the recipe details (title , image etc)
   const [loading, setLoading] = useState(true); //to show loading sign when data is fetching
 
-  useEffect(() => { // run on the page load
+  useEffect(() => { //run on the page load
     const fetchRecipe = async () => {
       try {
         const res = await fetch(
@@ -27,17 +28,15 @@ const RestaurantMenu = () => {
     fetchRecipe(); // fetching happens here
   } , [resID]);
 
-  // like useEffect(() => {
+  useEffect(() => {
     // fetching happens here 
-  //   } , [resID])
+    } , [resID])
 
   return (
     <div className="recipe-container">
       <h2>The food you were craving for 🥗🍛🥙</h2>
 
       {loading ? (
-        // <ShimmerUI />
-        // <p>Loading....</p>
         <h3>Loading... even turtles are faster than this! 🐢</h3>
       ) : recipe ? (
         <div className="recipe-list">

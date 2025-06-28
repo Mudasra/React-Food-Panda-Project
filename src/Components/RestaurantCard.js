@@ -1,5 +1,3 @@
-
-
 const RestaurantCard = ({ name , image , rating , cuisine}) => {
    return (
     <div className="card">
