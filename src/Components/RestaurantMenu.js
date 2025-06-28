@@ -5,11 +5,11 @@ import { useParams } from "react-router-dom";
 const API_KEY = "e79e25cf11f848caae8bad2978bfce6e";
 
 const RestaurantMenu = () => {
-  const { resID } = useParams();
-  const [recipe, setRecipe] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { resID } = useParams(); //which recipe 
+  const [recipe, setRecipe] = useState(null); //storing data - recipe - to stpre the recipe details (title , image etc)
+  const [loading, setLoading] = useState(true); //to show loading sign when data is fetching
 
-  useEffect(() => {
+  useEffect(() => { // run on the page load
     const fetchRecipe = async () => {
       try {
         const res = await fetch(
@@ -24,16 +24,21 @@ const RestaurantMenu = () => {
       }
     };
 
-    fetchRecipe();
-  }, [resID]);
+    fetchRecipe(); // fetching happens here
+  } , [resID]);
+
+  // like useEffect(() => {
+    // fetching happens here 
+  //   } , [resID])
 
   return (
     <div className="recipe-container">
-      <h2>The food you were craving for 😋</h2>
+      <h2>The food you were craving for 🥗🍛🥙</h2>
 
       {loading ? (
         // <ShimmerUI />
-        <p>Loading....</p>
+        // <p>Loading....</p>
+        <h3>Loading... even turtles are faster than this! 🐢</h3>
       ) : recipe ? (
         <div className="recipe-list">
           <div className="recipe-card">
@@ -49,7 +54,8 @@ const RestaurantMenu = () => {
         </div>
       ) : (
         <p>No recipe found.</p>
-      )}
+      )} 
+      {/* this is called conditional rendering  */}
     </div>
   );
 };
