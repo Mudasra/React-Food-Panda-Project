@@ -1,11 +1,12 @@
+// class based components
 import UserClass from "./ClassBasedUsers";
 import UserFunction from "./FunctionalComponentUsers";
 import { Component } from "react";
 
-
 class About extends Component {
   constructor(props) {
     super(props);
+
     // console.log("Parent Constructor");
   }
 
@@ -24,14 +25,14 @@ class About extends Component {
           email={"km4446245@gmail.com"}
           location={"Pakistan"}
         />
+        {/* uncomment these to find out the sequence of phases of react in console */}
+        {/* <UserClass name={"second"} />
+        <UserClass name={"third"} /> */}
       </div>
     );
   }
 }
 
 export default About;
-
-
-
 
 
