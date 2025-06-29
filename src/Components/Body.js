@@ -5,7 +5,9 @@ import SearchBar from "./SearchBar";
 import { useState, useEffect } from "react";
 import ShimmerUI from "./ShimmerUI";
 import { Link } from "react-router-dom";
-import useFetchRecipes from "../utils/useFetch"; // custom hook to fetch data
+import useFetchRecipes from "../utils/useFetch"; 
+import useOnlineStatus from "../utils/useOnlineStatus";
+import OfflineGame from "../utils/OfflineGame"; 
 
 
 const API_KEY = "e79e25cf11f848caae8bad2978bfce6e";
@@ -17,10 +19,60 @@ const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [allRestaurants, setAllRestaurants] = useState([]);
 
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false) return <OfflineGame />
+
+
+  // by spoonacular api 
+  //   useEffect(() => {
+  //   setRestaurants(data);
+  //   setAllRestaurants(data);
+  // }, [data]);
+
+
+
+
+  // by dummy api 
     useEffect(() => {
-    setRestaurants(data);
-    setAllRestaurants(data);
-  }, [data]);
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        "https://raw.githubusercontent.com/namastedev/namaste-react/refs/heads/main/swiggy-api"
+      );
+      const json = await response.json();
+      console.log("Full JSON:", json);
+
+      const cardList = json?.data?.cards || [];
+      let restaurantArray = [];
+
+      for (const cardObj of cardList) {
+        const arr =
+          cardObj?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        if (Array.isArray(arr)) {
+          restaurantArray = arr;
+          break;
+        }
+      }
+
+      console.log("Found restaurant array of length:", restaurantArray.length);
+
+      const formatted = restaurantArray.map((res) => ({
+        id: res.info.id,
+        name: res.info.name,
+        image: `https://media-assets.swiggy.com/swiggy/image/upload/${res.info.cloudinaryImageId}`,
+        rating: res.info.avgRating,
+        cuisine: res.info.cuisines.join(", "),
+      }));
+
+      setRestaurants(formatted);
+      setAllRestaurants(formatted);
+    } catch (err) {
+      console.error("Error fetching data:", err);
+    }
+  };
 
 
   const handleFilter = (filterParam) => {
@@ -63,4 +115,16 @@ const Body = () => {
 };
 
 export default Body;
+
+
+
+
+
+
+
+
+
+
+
+
 
