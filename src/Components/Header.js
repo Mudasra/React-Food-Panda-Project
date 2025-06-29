@@ -14,9 +14,10 @@ const Header = () => {
     <header className="header">
       <div className="logo-container">
         <img
-          className="logo"
+          className="logo w-40"
           src="https://www.foodpanda.com/wp-content/uploads/2023/06/foodpanda_logo_2023.svg"
           alt="FoodPanda Logo"
+          
         />
       </div>
 
@@ -31,19 +32,19 @@ const Header = () => {
 
       
       <nav className={`nav-items ${menuOpen ? "open" : ""}`}>
-        <ul>
+        <ul className="flex gap-6 justify-self-center">
           <li>Online Staus {onlineStatus ? "🟢" : "🔴"}</li>
           
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About Us</Link></li>
-          <li><Link to="/contact">Contact Us</Link></li>
-          <li><Link to="/Grocery">Grocery</Link></li>
+          <li className="header-li "><Link to="/">Home</Link></li>
+          <li className="header-li "><Link to="/about">About Us</Link></li>
+          <li className="header-li "><Link to="/contact">Contact Us</Link></li>
+          <li className="header-li "><Link to="/Grocery">Grocery</Link></li>
           <li>
-            <i className="fa-solid fa-cart-shopping"></i>
+            <i className="fa-solid fa-cart-shopping header-li"></i>
           </li>
           <li>
             <button
-              className="login-btn"
+              className="header-btn"
               onClick={() =>
                 setBtnName((prev) => (prev === "Login" ? "Logout" : "Login"))
               }

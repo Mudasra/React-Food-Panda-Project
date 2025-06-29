@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "../index.css";
 import Header from "./Components/Header";
 import Body from "./Components/Body";
 import Footer from "./Components/Footer";
@@ -19,7 +20,7 @@ const AppLayout = () => {
   return (
     <div className="app">
       <Header />
-      <main className="content">
+      <main className="content flex-1">
         <Outlet />
       </main>
       <Footer />

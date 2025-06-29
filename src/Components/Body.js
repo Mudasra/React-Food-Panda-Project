@@ -93,7 +93,7 @@ const Body = () => {
         <SearchBar onFilter={handleFilter} />
       </div>
 
-      <div className="res-container">
+      <div className="res-container flex flex-wrap">
         {loading ? (
           <ShimmerUI />
         ) : (
