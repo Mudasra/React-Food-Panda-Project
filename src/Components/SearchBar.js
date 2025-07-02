@@ -7,7 +7,7 @@ const SearchBar = ({ onFilter }) => {
   // react is rerendering the whole component but is just updating the part of the component that has changed
   console.log("body rendered");
   return (
-    <div className="Search-container gap-5 flex justify-center m-6">
+    <div className="Search-container mt-[8.5%]  gap-5 flex justify-center m-6">
       <input
         type="text"
         className="search-input"

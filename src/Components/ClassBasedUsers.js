@@ -42,9 +42,9 @@ class UserClass extends React.Component {
 
     return (
       <div className="git-card">
-        <img className="git-img" src={avatar_url}/>
-        <h2>Name: {name}</h2>
-        <h3 className="subtext">Location: {location}</h3>
+        <img className="git-img w-[180px] rounded-sm" src={avatar_url}/>
+        <h2 className="font-bold text-gray-600">Name: {name}</h2>
+        <h3 className="subtext text-gray-500">Location: {location}</h3>
       </div>
     );
   }

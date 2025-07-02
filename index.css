@@ -2,10 +2,10 @@
 
 /* header  */
 .header {
-  @apply flex justify-between p-6 items-center bg-[#ff2b85] text-white shadow-lg;
+  @apply flex w-[100%] fixed justify-between p-6 items-center bg-[#ff2b85] text-white shadow-lg;
 }
 .header-li {
-  @apply transform transition duration-300 hover:scale-120;
+  @apply cursor-pointer transform transition duration-300 hover:scale-120;
 }
 
 .header-btn {
@@ -56,4 +56,9 @@
 }
 .footer a {
   @apply transform transition duration-300 hover:scale-120;
+}
+
+/* about  */
+.git-card{
+    @apply w-[200px] bg-gray-100 m-11 shadow-lg flex items-center justify-center flex-col p-2 rounded-sm
 }
