@@ -1,88 +1,29 @@
-// by spoonacular api - but it has limited requests per day  
-
-import RestaurantCard , { Promoted } from "./RestaurantCard";
+import RestaurantCard from "./RestaurantCard";
 import SearchBar from "./SearchBar";
 import { useState, useEffect } from "react";
 import ShimmerUI from "./ShimmerUI";
 import { Link } from "react-router-dom";
-import useFetchRecipes from "../utils/useFetch"; 
+import useFetchRecipes from "../utils/useFetch";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import OfflineGame from "../utils/OfflineGame"; 
-
-
-
-const API_KEY = "e79e25cf11f848caae8bad2978bfce6e";
-const URL = `https://api.spoonacular.com/recipes/complexSearch?query=pasta&number=6&apiKey=${API_KEY}`;
+import OfflineGame from "../utils/OfflineGame";
 
 const Body = () => {
-
-  const { data, loading } = useFetchRecipes(URL);
-  const [restaurants, setRestaurants] = useState([]);
-  const [allRestaurants, setAllRestaurants] = useState([]);
-
   const onlineStatus = useOnlineStatus();
-  if (onlineStatus === false) return <OfflineGame />
+  const { allRestaurants, loading } = useFetchRecipes();
+  const [restaurants, setRestaurants] = useState([]);
 
+  useEffect(() => {
+    if (!loading) {
+      setRestaurants(allRestaurants);
+    }
+  }, [allRestaurants, loading]);
 
-  const PromotedRestaurant = Promoted(RestaurantCard);
-
-  // by spoonacular api 
-    useEffect(() => {
-    setRestaurants(data);
-    setAllRestaurants(data);
-  }, [data]);
-
-
-
-
-  // by dummy api 
-  //   useEffect(() => {
-  //   fetchData();
-  // }, []);
-
-  // const fetchData = async () => {
-  //   try {
-  //     const response = await fetch(
-  //     "https://raw.githubusercontent.com/namastedev/namaste-react/refs/heads/main/swiggy-api"
-  //     );
-  //     const json = await response.json();
-  //     console.log("Full JSON:", json);
-
-  //     const cardList = json?.data?.cards || [];
-  //     let restaurantArray = [];
-
-  //     for (const cardObj of cardList) {
-  //       const arr =
-  //         cardObj?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-  //       if (Array.isArray(arr)) {
-  //         restaurantArray = arr;
-  //         break;
-  //       }
-  //     }
- 
-  //  console.log(JSON.stringify(json, null, 2));
-  //     console.log("Found restaurant array of length:", restaurantArray.length);
-
-  //     const formatted = restaurantArray.map((res) => ({
-  //       id: res.info.id,
-  //       name: res.info.name,
-  //       image: `https://media-assets.swiggy.com/swiggy/image/upload/${res.info.cloudinaryImageId}`,
-  //       rating: res.info.avgRating,
-  //       cuisine: res.info.cuisines.join(", "),
-  //     }));
-
-  //     setRestaurants(formatted);
-  //     setAllRestaurants(formatted);
-  //   } catch (err) {
-  //     console.error("Error fetching data:", err);
-  //   }
-  // };
-
-
+  if (onlineStatus === false) return <OfflineGame />;
+  if (loading) return <ShimmerUI />;
 
   const handleFilter = (filterParam) => {
     if (filterParam === "topRated") {
-      const filtered = allRestaurants.filter((r) => parseFloat(r.rating) > 4.2);
+      const filtered = allRestaurants.filter((r) => parseFloat(r.rating) > 4.3);
       setRestaurants(filtered);
     } else {
       const filtered = allRestaurants.filter((r) =>
@@ -94,42 +35,34 @@ const Body = () => {
 
   return (
     <div className="body">
+
       <div className="search">
         <SearchBar onFilter={handleFilter} />
       </div>
 
 
-      <div className="res-container flex flex-wrap">
-        {loading ? (
-          <ShimmerUI />
-         ) : 
-          restaurants.map((r) => (
-            <Link key={r.id} to={`/restaurant/${r.id}`} className="card-link">
-              {r.promoted ? (
-                <PromotedRestaurant
-                id={r.id}
-                name={r.name}
-                image={r.image}
-                rating={r.rating}
-                cuisine={r.cuisine}
-                />
-              ) : 
-               <RestaurantCard
-                id={r.id}
-                name={r.name}
-                image={r.image}
-                rating={r.rating}
-                cuisine={r.cuisine}
-              />
-              }
-            </Link>
-          ))}
+      <div className="res-container">
+        {restaurants.map((r) => (
+  <Link key={r.id} to={`/restaurant/${r.id}`}>
+    <RestaurantCard
+      name={r.name}
+      image={r.image}
+      rating={r.rating}
+      costForTwo={r.costForTwo}
+      cuisines={r.cuisines}
+      locality={r.locality}
+      area={r.area}
+    />
+  </Link>
+))}
       </div>
+      
     </div>
   );
 };
 
 export default Body;
+
 
 
 

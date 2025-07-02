@@ -7,6 +7,7 @@ import Footer from "./Components/Footer";
 // import About from "./Components/About";
 import Contact from "./Components/Contact";
 import Error from "./Components/Error";
+import RestaurantDetails from "./Components/RestaurantDetails";
 import RestaurantMenu from "./Components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 // import Grocery from "./Components/Grocery";
@@ -49,6 +50,10 @@ const AppRouter = createBrowserRouter([
         element: <Contact />,
       },
       {
+        path:"/restaurant/:id",
+        element:<RestaurantDetails />,
+      },
+      {
         path: "/grocery",
         element: (
           <Suspense fallback={<h1>Loading...</h1>}>
@@ -56,10 +61,10 @@ const AppRouter = createBrowserRouter([
           </Suspense>
         ),
       },
-      {
-        path: "/restaurant/:resID",
-        element: <RestaurantMenu />,
-      },
+      // {
+      //   path: "/restaurant/:resID",
+      //   element: <RestaurantMenu />,
+      // },
     ],
   },
 ]);
