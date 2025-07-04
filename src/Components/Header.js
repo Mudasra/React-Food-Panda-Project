@@ -14,11 +14,15 @@ const Header = () => {
     <header className="header">
       <div className="logo-container">
         <img
+          className="logo w-12"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpkNxLjYjnWKfD3jfkqpiuC2Cqx2lc0AXdozRR9n8IJYO0CqaoeauJr3M&usqp=CAE&s"
+          alt="FoodPanda Logo"          
+        />
+        {/* <img
           className="logo w-40"
           src="https://www.foodpanda.com/wp-content/uploads/2023/06/foodpanda_logo_2023.svg"
-          alt="FoodPanda Logo"
-          
-        />
+          alt="FoodPanda Logo"          
+        /> */}
       </div>
 
       
