@@ -1,11 +1,12 @@
 import RestaurantCard from "./RestaurantCard";
 import SearchBar from "./SearchBar";
-import { useState, useEffect } from "react";
+import { useState, useEffect , useContext } from "react";
 import ShimmerUI from "./ShimmerUI";
 import { Link } from "react-router-dom";
 import useFetchRecipes from "../utils/useFetch";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import OfflineGame from "../utils/OfflineGame";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const onlineStatus = useOnlineStatus();
@@ -21,6 +22,7 @@ const Body = () => {
   if (onlineStatus === false) return <OfflineGame />;
   if (loading) return <ShimmerUI />;
 
+
   const handleFilter = (filterParam) => {
     if (filterParam === "topRated") {
       const filtered = allRestaurants.filter((r) => parseFloat(r.rating) > 4.3);
@@ -32,6 +34,8 @@ const Body = () => {
       setRestaurants(filtered);
     }
   };
+
+  // const { loggedInUser , setUserName } = useContext(UserContext);
 
   return (
     <div className="body">

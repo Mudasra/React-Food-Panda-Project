@@ -1,28 +1,24 @@
-import { useState } from "react";
+import { useState , useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-// import Grocery from "../Components/Grocery";
-
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   const [menuOpen, setMenuOpen] = useState(false);
   const onlineStatus = useOnlineStatus();
 
+  const { loggedInUser } = useContext(UserContext);
+  // console.log(loggedInUser)
 
   return (
     <header className="header">
       <div className="logo-container">
         <img
-          className="logo w-12"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpkNxLjYjnWKfD3jfkqpiuC2Cqx2lc0AXdozRR9n8IJYO0CqaoeauJr3M&usqp=CAE&s"
-          alt="FoodPanda Logo"          
-        />
-        {/* <img
           className="logo w-40"
           src="https://www.foodpanda.com/wp-content/uploads/2023/06/foodpanda_logo_2023.svg"
           alt="FoodPanda Logo"          
-        /> */}
+        />
       </div>
 
       
@@ -56,6 +52,7 @@ const Header = () => {
               {btnName}
             </button>
           </li>
+          <li className="header-li ">{loggedInUser}</li>
         </ul>
       </nav>
     </header>

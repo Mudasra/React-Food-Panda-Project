@@ -1,38 +1,52 @@
-import React from "react";
+import React, {useState , useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "../index.css";
 import Header from "./Components/Header";
 import Body from "./Components/Body";
 import Footer from "./Components/Footer";
-// import About from "./Components/About";
 import Contact from "./Components/Contact";
 import Error from "./Components/Error";
 import RestaurantDetails from "./Components/RestaurantDetails";
 import RestaurantMenu from "./Components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-// import Grocery from "./Components/Grocery";
-import React, { lazy, Suspense } from "react";
+import UserContext from "./utils/UserContext";
+import React, { lazy, Suspense , useContext } from "react";
+
 
 const Grocery = lazy(() => import("./Components/Grocery"));
 const About = lazy(() => import("./Components/About"));
 
 
 const AppLayout = () => {
-  return (
-    <div className="app min-h-screen flex flex-col">
-      <Header />
-      <main className="content flex-1">
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
+
+   const [UserName , setUserName] = useState("")
+
+  useEffect(() => {
+    const data = {
+      name: "Ahmad",
+    }
+    setUserName(data.name)
+  },[])
+
+   const user = { loggedInUser: "Default User" };
+
+    return (
+    <UserContext.Provider value={{ loggedInUser: UserName , setUserName }}>
+      <div className="app min-h-screen flex flex-col">
+       <Header />
+       <main className="content flex-1">
+         <Outlet />
+       </main>
+       <Footer />
+     </div>
+    </UserContext.Provider>
   );
 };
-
+ 
 const AppRouter = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
+    element: <AppLayout />,      
     errorElement: <Error />,
     children: [
       {
@@ -61,11 +75,7 @@ const AppRouter = createBrowserRouter([
           </Suspense>
         ),
       },
-      // {
-      //   path: "/restaurant/:resID",
-      //   element: <RestaurantMenu />,
-      // },
-    ],
+    ]
   },
 ]);
 
