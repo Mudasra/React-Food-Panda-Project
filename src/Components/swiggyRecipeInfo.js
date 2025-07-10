@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import {addItems} from "../utils/CartSlice"
+
+
 
 const RestaurantInfo = ({ restaurant, menuItems }) => {
   const [openIndex, setOpenIndex] = useState(null);
@@ -6,6 +10,14 @@ const RestaurantInfo = ({ restaurant, menuItems }) => {
   const handleClick = (index) => {
     setOpenIndex((prev) => (prev === index ? null : index));
   };
+
+  const dispatch = useDispatch();
+
+
+  const handleAddItem = () => {
+    // dispatch an action
+    dispatch(addItems("Pizza"));
+  }
 
   return (
     <div className="mt-[9%] p-6 max-w-3xl mx-auto bg-white rounded shadow">
@@ -80,7 +92,8 @@ const RestaurantInfo = ({ restaurant, menuItems }) => {
                         />
 
                         <div className="absolute left-1/2 bottom-0 translate-x-[-50%] translate-y-1/2 z-20">
-                          <button className="bg-white text-green-600 font-semibold border border-gray-300 px-11 py-1 rounded-lg shadow-md hover:bg-gray-100 transition">
+                          <button onClick={() => handleAddItem(item)} 
+                          className="bg-white text-green-600 font-semibold border border-gray-300 px-11 py-1 rounded-lg shadow-md hover:bg-gray-100 transition">
                             Add
                           </button>
                         </div>
