@@ -10,7 +10,6 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
 
   const { loggedInUser } = useContext(UserContext);
-  // console.log(loggedInUser)
 
   // subscribing to the store using selector
   const cartItems = useSelector((store) => store.cart.items);
@@ -51,9 +50,9 @@ const Header = () => {
           </li>
 
           <li>
-            <Link to="/cart" className="header-li flex items-center gap-2">
-              <i className="fa-solid fa-cart-shopping"></i>
-              <span>({cartItems.length})</span>
+            <Link to="/cart" className="header-li flex items-center gap-2 font-bold bg-white py-1 px-2 rounded-lg text-[#ff2b85] ">
+              <i className="fa-solid fa-cart-shopping "></i>
+              <span className="">{cartItems.length}</span>
             </Link>
           </li>
 

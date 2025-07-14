@@ -1,4 +1,4 @@
-import React, {useState , useEffect } from "react";
+import React, {useState , useEffect ,lazy, Suspense , useContext } from "react";
 import ReactDOM from "react-dom/client";
 import "../index.css";
 import Header from "./Components/Header";
@@ -11,7 +11,6 @@ import RestaurantMenu from "./Components/RestaurantMenu";
 import Cart from "./Components/CartStore";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import UserContext from "./utils/UserContext";
-import React, { lazy, Suspense , useContext } from "react";
 import { Provider } from "react-redux";
 import AppStore from "./utils/AppStore";
 
@@ -25,7 +24,7 @@ const AppLayout = () => {
 
   useEffect(() => {
     const data = {
-      name: "Ahmad",
+      name: "Mudasra",
     }
     setUserName(data.name)
   },[])

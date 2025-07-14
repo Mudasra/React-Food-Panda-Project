@@ -1,14 +1,43 @@
-// const Cart = () => {
-//     return <div className="bg-amber-400 text-center m-4 p-4">
-//     <h1 className="text-2xl font-bold text-black">Cart</h1>
-//     </div>
-// }
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { clearCart } from "../utils/CartSlice";
+import SwiggyRecipeInfo from "./swiggyRecipeInfo";
+
+
 const Cart = () => {
-    console.log ("whats wrong with you")
+  const cartItems = useSelector((store) => store.cart.items);
+  const dispatch = useDispatch();
+
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
+
   return (
-    <h1>Hello from Cart Page</h1>
+    <div className="mt-[9%] p-6 max-w-3xl mx-auto bg-white rounded shadow">
+      <h1 className="text-2xl font-bold mb-6 text-center">🛒 Your Cart</h1>
+
+      {cartItems.length === 0 ? (
+        <p className="text-center text-gray-500">Your cart is empty. Add items to Cart.</p>
+      ) : (
+        <>
+          <div className="flex justify-end mb-6">
+            <button
+              onClick={handleClearCart}
+              className="p-2 text-white bg-red-600 rounded-lg hover:bg-red-700"
+            >
+              Clear Cart
+            </button>
+          </div>
+
+          <SwiggyRecipeInfo
+            menuItems={cartItems}
+            showAddButton={false}
+            showRemoveButton={true}
+          />
+        </>
+      )}
+    </div>
   );
 };
-
 
 export default Cart;
