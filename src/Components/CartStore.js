@@ -23,7 +23,7 @@ const Cart = () => {
           <div className="flex justify-end mb-6">
             <button
               onClick={handleClearCart}
-              className="p-2 text-white bg-red-600 rounded-lg hover:bg-red-700"
+              className="p-2 cursor-pointer text-white bg-red-600 rounded-lg hover:bg-red-700"
             >
               Clear Cart
             </button>

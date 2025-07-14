@@ -12,7 +12,7 @@ test("Should load contact us component", () => {
   expect(heading).toBeInTheDocument();
 });
 
-
+// it can be test or it .
 test("Should load button on contact component", () => {
   render(<Contact />);
 
